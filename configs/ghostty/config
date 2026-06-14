@@ -1,0 +1,7 @@
+## Style
+theme = iTerm2 Default
+font-family = "JetBrains Mono"
+font-family = "D2Coding"
+background-opacity = 0.925
+term = xterm-256color
+
