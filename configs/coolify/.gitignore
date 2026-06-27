@@ -1,0 +1,15 @@
+# 실제 Coolify 환경 파일은 커밋하지 않음. 운영도 .env 하나만 사용한다.
+.env
+
+# 실수로 만든 .env 변형 파일도 안전상 무시한다.
+.env.*
+!.env.example
+
+# 설치/업그레이드 로그는 커밋하지 않는다.
+installation-*.log
+upgrade-*.log
+
+# 로컬/editor 파일
+.DS_Store
+.idea/
+.vscode/
