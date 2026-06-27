@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-LOCAL_URL="${LOCAL_URL:-http://127.0.0.1:8000}"
+APP_PORT="${APP_PORT:-8000}"
+LOCAL_URL="${LOCAL_URL:-http://127.0.0.1:${APP_PORT}}"
 BASE_URL="${BASE_URL:-}"
 
 echo "== Docker containers =="
