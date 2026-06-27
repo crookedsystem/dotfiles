@@ -28,7 +28,7 @@ Coolify를 Linux 서버에 설치하고, 로컬 포트 또는 별도 DNS/프록�
 
 ```text
 config/docker-compose.yml
-config/env.example
+.env.example
 scripts/configure-tailscale-serve.sh
 scripts/verify-coolify.sh
 ```
@@ -71,7 +71,7 @@ sudo cp config/docker-compose.yml /data/coolify/source/docker-compose.yml
 `.env`가 없는 새 환경에서 수동으로 시작해야 한다면 예시 파일을 참고해 직접 값을 채우세요.
 
 ```bash
-sudo cp config/env.example /data/coolify/source/.env
+sudo cp .env.example /data/coolify/source/.env
 sudo nano /data/coolify/source/.env
 ```
 
@@ -148,6 +148,12 @@ sudo tailscale serve --http=80 off
 
 ## 5. 검증 방법
 
+Compose 설정 파일을 정적으로 검증:
+
+```bash
+docker compose --env-file .env.example -f config/docker-compose.yml config --no-interpolate
+```
+
 로컬 포트만 검증:
 
 ```bash
@@ -193,4 +199,4 @@ ss -ltnp | grep ':8000' || true
 
 실제 서버의 `.env`는 앱 키, DB 비밀번호, Redis 비밀번호, 초기 root 계정 정보, 세션/토큰성 값 등을 포함할 수 있으므로 커밋하지 않습니다.
 
-`config/env.example`은 구조 참고용입니다. 실제 비밀번호나 운영 키를 넣지 마세요.
+`.env.example`은 구조 참고용입니다. 실제 비밀번호나 운영 키를 넣지 마세요.
