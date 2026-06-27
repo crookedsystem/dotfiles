@@ -154,6 +154,8 @@ Compose 설정 파일을 정적으로 검증:
 docker compose --env-file .env.example -f config/docker-compose.yml config --no-interpolate
 ```
 
+이 검증 명령은 실제 서버 파일인 `/data/coolify/source/.env`가 아직 없는 체크아웃/CI 환경에서도 `.env.example` 값만으로 Compose 템플릿 구문을 확인할 수 있습니다. 실제 실행은 위 실행 방법처럼 `/data/coolify/source/.env`를 만든 뒤 `--env-file .env`로 진행하세요.
+
 로컬 포트만 검증:
 
 ```bash
