@@ -68,14 +68,14 @@ Compose 파일을 서버의 Coolify 경로에 반영합니다.
 sudo cp config/docker-compose.yml /data/coolify/source/docker-compose.yml
 ```
 
-`.env`가 없는 새 환경에서 수동으로 시작해야 한다면 예시 파일을 참고해 직접 값을 채우세요.
+`.env`가 없는 새 환경에서 수동으로 시작해야 한다면 `.env.example`의 주석을 따라 각 값을 직접 채우세요.
 
 ```bash
 sudo cp .env.example /data/coolify/source/.env
 sudo nano /data/coolify/source/.env
 ```
 
-주의: `APP_KEY`, `DB_PASSWORD`, `REDIS_PASSWORD`, `PUSHER_APP_SECRET`, `ROOT_USER_PASSWORD` 같은 값은 반드시 새로 생성한 안전한 값으로 바꿔야 합니다. 실서비스에서는 공식 설치 스크립트가 생성한 `.env`를 유지하는 편이 안전합니다.
+주의: `APP_KEY`, `DB_PASSWORD`, `REDIS_PASSWORD`, `PUSHER_APP_SECRET`, `ROOT_USER_PASSWORD` 같은 값은 반드시 새로 생성한 안전한 값으로 바꿔야 합니다. `.env.example`에는 `openssl rand` 기반 생성 예시와 값별 설명이 포함되어 있습니다. 실서비스에서는 공식 설치 스크립트가 생성한 `.env`를 유지하는 편이 안전합니다.
 
 ## 3. 실행 방법
 
