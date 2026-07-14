@@ -3,12 +3,9 @@
 # Brew Setting
 brew update
 brew install curl
-brew install global
 brew install git
-brew install neovim
 brew install hammerspoon --cask
 brew install ffmpeg
-brew install neovim
 
 
 
@@ -22,10 +19,8 @@ brew install neovim
 #brew install quilt bats
 #sudo npm install -g bats
 
-# git clone 
-git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+# git clone
 git clone https://github.com/rookedsysc/Linux_MacOS_Setting
-cp ./Linux_MacOS_Setting/.vimrc ~/.vimrc
 
 # ZSH Setting
 chsh -s /bin/zsh
@@ -41,13 +36,7 @@ cd ./Linux_MacOS_Setting
 export PATH="$PATH:/usr/bin"
 export PATH="$PATH:/bin"
 cp zshrc.mac ~/.zshrc
-cp .vimrc ~/.vimrc
-mkdir ~/.config/nvim/
-cp ~/.vimrc ~/.config/nvim
 source ~/.zshrc
-
-# VIM Setting
-vim +PluginInstall +qall
 
 # if dont install zsh-autosuggetions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
