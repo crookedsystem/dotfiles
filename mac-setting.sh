@@ -4,6 +4,7 @@
 brew update
 brew install curl
 brew install git
+brew install neovim
 brew install hammerspoon --cask
 brew install ffmpeg
 
