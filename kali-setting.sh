@@ -29,28 +29,3 @@ sudo systemctl enable ssh
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
 
-
-# VIM Setting
-# update Aug 16 21:00 / cuz ubuntu error
-git clone https://github.com/rookedsysc/Linux_MacOS_Setting
-cd ./Linux_MacOS_Setting
-export PATH="$PATH:/usr/bin"
-export PATH="$PATH:/bin"
-cp .vimrc ~/.vimrc
-sudo apt-get install vim
-sudo apt-get install vim-gui-common -y
-sudo apt-get install vim-runtime -y
-sudo apt-get install build-essential cmake python-dev silversearcher-ag -y
-sudo apt-get install python-dev-is-python3 -y
-sudo apt-get install -y ripgrep && sudo apt-get -y install libncurses5-dev
-wget http://tamacom.com/global/global-6.3.3.tar.gz
-tar -xvf global-6.3.3.tar.gz
-cd global-6.3.3
-./configure && make
-make install && cd
-cd ../
-git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-vim +PluginInstall +qall
-cd ~/.vim/bundle/vimproc.vim
-make
-

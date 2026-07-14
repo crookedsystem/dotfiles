@@ -40,67 +40,10 @@ tmux 플러그인 관리를 위해 TPM을 설치해야 합니다.
 
 설치 후 tmux에서 `prefix + I`를 눌러 플러그인을 설치합니다.
 
-## Claude Code & SuperClaude 설치
-
-### 사전 요구사항
-
-- Node.js와 npm 설치 필요
-- Git 설치 필요
-- Python 3.7+ 설치 필요
-- 인터넷 연결
-
-### 설치 방법 
-
-리눅스 시스템용 자동 설치 스크립트 사용:
-
-    wget https://raw.githubusercontent.com/rookedsysc/linux-macos-setting/master/linux-claude-installer.sh
-    chmod +x linux-claude-installer.sh
-    ./linux-claude-installer.sh
-
-설치 프로그램이 다음을 수행합니다:
-1. npm을 통해 Claude Code를 전역 설치
-2. uv 설치 (SuperClaude에 필요한 Python 패키지 매니저)
-3. SuperClaude Framework 저장소 클론
-4. Python 가상환경 설정
-5. SuperClaude 패키지 설치
-6. SuperClaude 설치 설정 실행
-
-
 ## Docs
 
 - [AeroSpace](./docs/how-to-use-aerospace.md)
 - [Tailscale Exit Node](./docs/TAILSCALE.md)
-
-### Jekkyll
-
-Install in Ubuntu
-
-    wget https://raw.githubusercontent.com/rookedsysc/Linux_MacOS_Setting/master/jekyllSetting.sh
-    sh jekyllSetting.sh
-
-Install in MacOS
-
-    wget https://raw.githubusercontent.com/rookedsysc/Linux_MacOS_Setting/master/macJekyll.sh
-    sh macJekyll.sh
-
-How to start a server
-
-    jekyll serve
-
-If you receive an error to install Gemfile:
-
-    cd [your gitblog local address]
-    bundler
-    sudo gem install jekyll bundler
-    bundle add webrick
-    sudo bundle exec jekyll serve
-
-![jekyllServe](./imgSrc/jekyllServe.png)
-
-#### algolia
-
-    export ALGOLIA_API_KEY='ADMIN KEY"
-    bundle exec jekyll algolia
 
 ### mkdocs
 
@@ -276,28 +219,6 @@ ssh -p 2222 user@127.0.0.1
 
   > "vctl allows users to Build, Run, Push and Pull containers and images, manage the system runtime settings, and configure the environment to support 'kind'."
 
-## KDE plasma for Kali Linux
-
-KDE plasma is a kind of Linux theme.
-
-![KDE plasma](./imgSrc/KDEplasma.jpeg)
-Install
-apt-get install kali-defaults kali-root-login desktop-base kde-plasma-desktop
-sudo update-alternatives --config x-session-manager > set kde as default
-
-## Remark
-
-`F9` is a script runner
-
-`F12` is a singlecompiler and runner
-
-`\gd` is gtags/def
-
-`\gr` is gtags/ref
-
-If you want to tracecode you need to change to your directory of source
-and enter a command , which is `gtags`.
-
 ## Setting
 
 Timezone Setting (Korea)
@@ -307,20 +228,3 @@ Timezone Setting (Korea)
 Ubuntu Dock Hide
 ![Dock](./imgSrc/Dock_1.png)
 ![Dock](./imgSrc/Dock_2.png)
-
-## Reference
-
-- Vundle
-  https://github.com/gmarik/Vundle.vim
-
-- Powerline
-  https://github.com/Lokaltog/vim-powerline
-  https://github.com/Lokaltog/vim-powerline/tree/develop/fontpatcher
-  https://github.com/Lokaltog/powerline-fonts
-
-- Unite/unite-gtags
-  https://github.com/Shougo/unite.vim
-  https://github.com/hewes/unite-gtags
-
-- Follow lokihardt
-  https://github.com/l0kihardt/vimrc

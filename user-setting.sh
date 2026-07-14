@@ -51,18 +51,9 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 git clone https://github.com/crookedsystem/dotfiles
 cd ./Linux_MacOS_Setting
 cp .zshrc ~/.zshrc
-cp .vimrc ~/.vimrc
 source ~/.zshrc
 command -v zsh | sudo tee -a /etc/shells
 chsh -s $(which zsh)
-
-# Power Line Setting
-sudo pip install git+git://github.com/Lokaltog/powerline
-wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf
-wget https://github.com/Loakaltog/powerline/raw/develop/font/10-powerline-symbols.conf
-mv PowerlineSymbols.otf /usr/share/fonts
-fc-cache -vf
-mv 10-powerline-symbols.conf /etc/fonts/conf.d
 
 # Utils
 # LazyVim
@@ -100,8 +91,6 @@ echo "[!] PATH"
 echo $PATH
 echo "[!] Zsh Setting"
 echo $SHELL
-echo "[!] Power Line Setting"
-which powerline
 
 # ZSH Theme
 mkdir ~/.oh-my-zsh/themes/spaceship
