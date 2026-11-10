@@ -4,29 +4,41 @@ That is my Linux(Ubuntu, Kali) and Mac OS setting.
 
 ## Install
 
+| Script | Target |
+| --- | --- |
+| `install-macos.sh` | macOS (Homebrew 필요) |
+| `install-ubuntu.sh` | Ubuntu, 일반 사용자 (sudo 필요) |
+| `install-ubuntu-root.sh` | Ubuntu, root |
+| `install-kali.sh` | Kali Linux, 일반 사용자 (sudo 필요) |
+
+모든 스크립트는 `bash`로 실행합니다. `sh`(dash)로 실행하면 문법 오류가 납니다.
+설치 중 입력을 묻지 않고, 다시 실행해도 이미 설치된 항목은 건너뜁니다. 실패한 부가 도구는 마지막에 목록으로 알려 주며, 다시 실행하면 그 항목만 재시도합니다.
+
 In Mac OS
-wget https://raw.githubusercontent.com/rookedsysc/linux-macos-setting/master/mac-setting.sh
-sh macSetting.sh
 
-Setting for Users
+    wget https://raw.githubusercontent.com/crookedsystem/dotfiles/main/install-macos.sh
+    bash install-macos.sh
 
-    wget https://raw.githubusercontent.com/rookedsysc/linux-macos-setting/master/user-setting.sh
-    sh user-setting.sh
+Setting for Users (Ubuntu)
 
-> When zsh shell is activated, enter "exit" to continue the next installation.
+    wget https://raw.githubusercontent.com/crookedsystem/dotfiles/main/install-ubuntu.sh
+    bash install-ubuntu.sh
 
-If this error message is printed,
+- `sudo` 비밀번호는 시작할 때 입력합니다. 이후 단계는 입력 없이 진행되지만, 단계 사이가 sudo 캐시 시간(기본 15분)을 넘으면 다시 물을 수 있습니다. 비밀번호 없는 sudo(`NOPASSWD`)를 설정하면 끝까지 무입력입니다.
+- 설치 순서: apt 패키지 → 로케일·ssh → Homebrew와 도구 → Rust·nvm → Docker → oh-my-zsh·플러그인·fzf·dotfiles → 기본 셸 변경
+- 설치 중 zsh로 진입하지 않습니다. 설치가 끝나면 `exec zsh`를 실행하거나 다시 로그인하세요. 기본 셸 변경과 `docker` 그룹은 다음 로그인부터 적용됩니다.
+- `zshrc.linux`는 `~/.zshrc`로 복사됩니다 (macOS는 `zshrc.macos`).
 
-> [oh-my-zsh] plugin 'zsh-autosuggestions' not found
-
-    git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
-    source ~/.zshrc
-
-In root
+In root (Ubuntu)
 
     su root
-        wget https://raw.githubusercontent.com/rookedsysc/linux-macos-setting/master/root-setting.sh
-    sh root-setting.sh
+    wget https://raw.githubusercontent.com/crookedsystem/dotfiles/main/install-ubuntu-root.sh
+    bash install-ubuntu-root.sh
+
+Kali Linux
+
+    wget https://raw.githubusercontent.com/crookedsystem/dotfiles/main/install-kali.sh
+    bash install-kali.sh
 
 ## TMUX 사용법
 

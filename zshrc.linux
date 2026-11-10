@@ -78,6 +78,9 @@ plugins=(
 
 
 
+# brew PATH는 파일 아래쪽에서 잡히므로, fzf 플러그인이 brew로 설치한 fzf를 찾도록 위치를 지정한다.
+export FZF_BASE="/home/linuxbrew/.linuxbrew/opt/fzf"
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -119,8 +122,7 @@ alias vi=nvim
 alias vim=nvim
 alias lg=lazygit
 alias ld=lazydocker
-# tmux & workmux
-alias wm=workmux
+# tmux
 tm() {
   case "$1" in
     remove|rm)
@@ -163,10 +165,6 @@ tm() {
 ts() {
   local selected=$(tmux ls | cut -d: -f1 | fzf --height 40% --reverse)
   [ -n "$selected" ] && tm "$selected"
-}
-ws() {
-  local selected=$(wm ls | awk 'NR>1 {print $1}' | fzf-tmux -p 55%,60% --reverse)
-  [ -n "$selected" ] && wm open "$selected"
 }
 # 새로운 워크트리 생성
 alias gwn='f() { CURRENT_DIR=$(basename "$(dirname "$PWD")"); ZNAME="$1"; DIRNAME="${CURRENT_DIR}-${ZNAME//\//-}"; SESSION_NAME="${CURRENT_DIR}-${ZNAME//\//-}"; git worktree add -b $ZNAME ../$DIRNAME && cd ../$DIRNAME; }; f'
@@ -212,8 +210,8 @@ bindkey "[D" backward-word
 bindkey "[C" forward-word
 
 # Rust Cargo 환경 설정
-source "$HOME/.cargo/env"
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+[ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
+[ -x /home/linuxbrew/.linuxbrew/bin/brew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
