@@ -56,6 +56,7 @@ tmux 플러그인 관리를 위해 TPM을 설치해야 합니다.
 
 - [AeroSpace](./docs/how-to-use-aerospace.md)
 - [Tailscale Exit Node](./docs/TAILSCALE.md)
+- [Herdr](./docs/HERDR.md)
 
 ### mkdocs
 
