@@ -57,7 +57,7 @@ install_homebrew_and_tools() {
 
   local formula
   for formula in ripgrep fzf tmux nvim htop lazygit lazydocker; do
-    run_optional brew install "$formula"
+    run_optional brew install --no-ask "$formula"
   done
   clone_if_missing https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 }
