@@ -130,7 +130,7 @@ print_summary() {
   fi
 }
 
-sudo -v
+sudo -n true
 install_apt_packages
 configure_locale_and_ssh
 install_homebrew_and_tools
