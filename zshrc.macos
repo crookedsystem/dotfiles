@@ -137,7 +137,6 @@ alias vi=nvim
 alias vim=nvim
 alias lg=lazygit
 alias ld=lazydocker
-alias wm=workmux
 tm() {
   case "$1" in
     remove|rm)
@@ -180,10 +179,6 @@ tm() {
 ts() {
   local selected=$(tmux ls | cut -d: -f1 | fzf --height 40% --reverse)
   [ -n "$selected" ] && tm "$selected"
-}
-ws() {
-  local selected=$(wm ls | awk 'NR>1 {print $1}' | fzf-tmux -p 55%,60% --reverse)
-  [ -n "$selected" ] && wm open "$selected"
 }
 # 새로운 워크트리 생성
 alias gwn='f() { CURRENT_DIR=$(basename "$(dirname "$PWD")"); ZNAME="$1"; DIRNAME="${CURRENT_DIR}-${ZNAME//\//-}"; SESSION_NAME="${CURRENT_DIR}-${ZNAME//\//-}"; git worktree add -b $ZNAME ../$DIRNAME && cd ../$DIRNAME; }; f'
@@ -237,9 +232,9 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 ## uv
-source $HOME/.local/bin/env
+[ -f "$HOME/.local/bin/env" ] && source "$HOME/.local/bin/env"
 ## Java - v 뒤에 숫자 입력해서 version 변경
-export JAVA_HOME=$(/usr/libexec/java_home -v21)
+/usr/libexec/java_home -v21 >/dev/null 2>&1 && export JAVA_HOME=$(/usr/libexec/java_home -v21)
 ## Flutter - FVM 
 ## ref : https://fvm.app/documentation/guides/quick-reference
 export PATH="$HOME/fvm/bin:$PATH"
@@ -252,7 +247,7 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-. "$HOME/.local/bin/env"
+[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
 
 # Added by Antigravity
 export PATH="/Users/rookedsysc/.antigravity/antigravity/bin:$PATH"
