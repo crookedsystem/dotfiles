@@ -47,7 +47,7 @@ OK
 
 ```bash
 git clone https://github.com/crookedsystem/dotfiles.git
-cd dotfiles/configs/coolify
+cd dotfiles/config/coolify
 ```
 
 Compose 파일을 서버의 Coolify 경로에 반영합니다.

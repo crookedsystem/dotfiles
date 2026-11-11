@@ -1,7 +1,7 @@
 # AeroSpace 주요 단축키 정리
 
-아래는 configs/.aerospace.toml 파일에 정의된 주요 단축키를 한국어로 정리한 표입니다. 각 단축키의 조합과 기능을 한눈에 보기 쉽게 정리했습니다.  
-(출처: configs/.aerospace.toml, 공식 문서: https://nikitabobko.github.io/AeroSpace/commands)
+아래는 config/.aerospace.toml 파일에 정의된 주요 단축키를 한국어로 정리한 표입니다. 각 단축키의 조합과 기능을 한눈에 보기 쉽게 정리했습니다.  
+(출처: config/.aerospace.toml, 공식 문서: https://nikitabobko.github.io/AeroSpace/commands)
 
 ---
 
@@ -51,4 +51,4 @@
 
 참고:  
 - 공식 명령어 설명: https://nikitabobko.github.io/AeroSpace/commands  
-- configs/.aerospace.toml 파일 내 주석 및 설정
+- config/.aerospace.toml 파일 내 주석 및 설정
