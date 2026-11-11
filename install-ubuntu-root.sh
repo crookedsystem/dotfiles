@@ -6,9 +6,11 @@ set -euo pipefail
 export DEBIAN_FRONTEND=noninteractive
 export NEEDRESTART_MODE=a
 
+ROOT_HOME="$(getent passwd root | cut -d: -f6)"
+ROOT_ZSH_DIR="$ROOT_HOME/.oh-my-zsh"
+ROOT_ZSH_CUSTOM="$ROOT_ZSH_DIR/custom"
 DOTFILES_REPO="https://github.com/crookedsystem/dotfiles"
-DOTFILES_DIR="$HOME/dotfiles"
-ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
+DOTFILES_DIR="$ROOT_HOME/dotfiles"
 
 FAILED_OPTIONAL_STEPS=()
 
@@ -36,27 +38,27 @@ require_root() {
 
 install_apt_packages() {
   apt-get -y update
-  apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" upgrade
-  apt-get install -y ca-certificates curl wget git net-tools python3 python3-pip ruby zsh fzf
+  apt-get install -y ca-certificates curl git zsh fzf neovim
 }
 
 copy_zshrc() {
   local zshrc_source="$DOTFILES_DIR/zshrc.linux"
   if [ ! -f "$zshrc_source" ]; then
-    echo "[!] $zshrc_source 파일이 없어 ~/.zshrc를 복사하지 못했습니다."
+    echo "[!] $zshrc_source 파일이 없어 $ROOT_HOME/.zshrc를 복사하지 못했습니다."
     return 1
   fi
-  cp "$zshrc_source" ~/.zshrc
+  cp "$zshrc_source" "$ROOT_HOME/.zshrc"
 }
 
 install_zsh_environment() {
-  if [ ! -d "$HOME/.oh-my-zsh" ]; then
-    RUNZSH=no CHSH=no KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  if [ ! -d "$ROOT_ZSH_DIR" ]; then
+    HOME="$ROOT_HOME" ZSH="$ROOT_ZSH_DIR" RUNZSH=no CHSH=no KEEP_ZSHRC=yes \
+      sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   fi
-  clone_if_missing https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
-  clone_if_missing https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
-  clone_if_missing https://github.com/spaceship-prompt/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth 1
-  ln -sf "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+  clone_if_missing https://github.com/zsh-users/zsh-syntax-highlighting.git "$ROOT_ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
+  clone_if_missing https://github.com/zsh-users/zsh-autosuggestions "$ROOT_ZSH_CUSTOM/plugins/zsh-autosuggestions"
+  clone_if_missing https://github.com/spaceship-prompt/spaceship-prompt.git "$ROOT_ZSH_CUSTOM/themes/spaceship-prompt" --depth 1
+  ln -sf "$ROOT_ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ROOT_ZSH_CUSTOM/themes/spaceship.zsh-theme"
 
   clone_if_missing "$DOTFILES_REPO" "$DOTFILES_DIR"
   run_optional copy_zshrc
