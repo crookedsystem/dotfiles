@@ -83,6 +83,14 @@ export FZF_BASE="/home/linuxbrew/.linuxbrew/opt/fzf"
 
 source $ZSH/oh-my-zsh.sh
 
+# 이전 명령을 자동 제안하고 Ctrl-R로 검색할 수 있도록 이력을 즉시 저장하고 세션 간 공유한다.
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=50000
+SAVEHIST=50000
+setopt append_history
+setopt inc_append_history
+setopt share_history
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"

@@ -25,7 +25,7 @@ Setting for Users (Ubuntu)
     bash install-ubuntu.sh
 
 - `sudo` 비밀번호는 시작할 때 입력합니다. 이후 단계는 입력 없이 진행되지만, 단계 사이가 sudo 캐시 시간(기본 15분)을 넘으면 다시 물을 수 있습니다. 비밀번호 없는 sudo(`NOPASSWD`)를 설정하면 끝까지 무입력입니다.
-- 설치 순서: apt 패키지 → 로케일·ssh → Homebrew와 도구 → Rust·nvm → Docker → oh-my-zsh·플러그인·fzf·dotfiles → 기본 셸 변경
+- 설치 순서: apt 패키지 → 로케일·ssh → Homebrew와 도구 → Rust·nvm → Docker → oh-my-zsh·플러그인·fzf·dotfiles → crookedsystem/nvim 설정·의존성 → 기본 셸 변경
 - 설치 중 zsh로 진입하지 않습니다. 설치가 끝나면 `exec zsh`를 실행하거나 다시 로그인하세요. 기본 셸 변경과 `docker` 그룹은 다음 로그인부터 적용됩니다.
 - `zshrc.linux`는 `~/.zshrc`로 복사됩니다 (macOS는 `zshrc.macos`).
 

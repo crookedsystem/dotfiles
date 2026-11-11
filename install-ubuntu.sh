@@ -8,6 +8,8 @@ export NEEDRESTART_MODE=a
 
 DOTFILES_REPO="https://github.com/crookedsystem/dotfiles"
 DOTFILES_DIR="$HOME/dotfiles"
+NVIM_CONFIG_REPO="https://github.com/crookedsystem/nvim"
+NVIM_CONFIG_DIR="$HOME/.config/nvim"
 BREW_BIN="/home/linuxbrew/.linuxbrew/bin/brew"
 ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
 
@@ -56,8 +58,8 @@ install_homebrew_and_tools() {
   eval "$("$BREW_BIN" shellenv)"
 
   local formula
-  for formula in ripgrep fzf tmux nvim htop lazygit lazydocker; do
-    run_optional brew install "$formula"
+  for formula in ripgrep fzf tmux neovim htop lazygit lazydocker; do
+    run_optional brew install --no-ask "$formula"
   done
   clone_if_missing https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 }
@@ -115,6 +117,28 @@ install_zsh_environment() {
   run_optional copy_zshrc
 }
 
+install_neovim_environment() {
+  mkdir -p "$(dirname "$NVIM_CONFIG_DIR")"
+  if [ -e "$NVIM_CONFIG_DIR" ] && ! git -C "$NVIM_CONFIG_DIR" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    echo "[!] $NVIM_CONFIG_DIR 경로에 다른 설정이 있어 crookedsystem/nvim을 설치하지 못했습니다."
+    return 1
+  fi
+
+  clone_if_missing "$NVIM_CONFIG_REPO" "$NVIM_CONFIG_DIR" || return 1
+
+  local origin_url
+  origin_url=$(git -C "$NVIM_CONFIG_DIR" remote get-url origin) || return 1
+  case "$origin_url" in
+    *github.com/crookedsystem/nvim | *github.com/crookedsystem/nvim.git | *github.com:crookedsystem/nvim.git) ;;
+    *)
+      echo "[!] $NVIM_CONFIG_DIR 경로가 crookedsystem/nvim 저장소가 아니라서 기존 설정을 유지합니다."
+      return 1
+      ;;
+  esac
+
+  make -C "$NVIM_CONFIG_DIR" install
+}
+
 change_login_shell() {
   sudo chsh -s /usr/bin/zsh "$(id -un)"
 }
@@ -137,5 +161,6 @@ install_homebrew_and_tools
 install_language_toolchains
 install_docker
 install_zsh_environment
+run_optional install_neovim_environment
 change_login_shell
 print_summary
