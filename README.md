@@ -40,6 +40,21 @@ Kali Linux
     wget https://raw.githubusercontent.com/crookedsystem/dotfiles/main/install-kali.sh
     bash install-kali.sh
 
+## 설정 파일 적용
+
+저장소 루트에서 설정을 `~/.config/`에 복사합니다.
+
+```bash
+mkdir -p ~/.config
+cp -R config/. ~/.config/
+```
+
+`~/.config`가 없으면 `cp -r config ~/.config`도 사용할 수 있습니다. 이미 있으면 이 명령은 `~/.config/config/`를 만들므로 위 명령으로 내용을 복사합니다.
+
+AeroSpace는 `~/.config/aerospace/aerospace.toml`, tmux는 `~/.config/tmux/tmux.conf`에 배치됩니다. 기존 `~/.aerospace.toml`이나 `~/.tmux.conf`가 있으면 백업 후 새 경로로 설정을 합쳐, 이전 파일과 중복되거나 이전 설정이 우선 적용되지 않도록 합니다.
+
+Ghostty와 workmux도 각 도구의 폴더에 복사됩니다. Coolify는 서버용 템플릿이므로 [별도 적용 절차](./config/coolify/README.md)를 따릅니다.
+
 ## TMUX 사용법
 
 [열기](./docs/TMUX.md)

@@ -25,3 +25,15 @@ $RECYCLE.BIN/
 
 # Dependencies
 node_modules/
+
+# Kanvibe hooks and local agent configuration
+/.kanvibe/
+/.claude/hooks/kanvibe-*
+/.claude/settings.json
+/.codex/hooks/kanvibe-*
+/.codex/hooks.json
+/.codex/config.toml
+/.gemini/hooks/kanvibe-*
+/.gemini/settings.json
+/.opencode/plugins/kanvibe-*
+/.serena/project.yml

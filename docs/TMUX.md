@@ -176,7 +176,7 @@ alias tas='tmux attach -t $(tmux ls | fzf | cut -d: -f1)'
 
 1. **세션 영속성**: tmux 세션은 터미널을 닫아도 백그라운드에서 계속 실행됩니다.
 2. **마우스 지원**: `set -g mouse on`을 설정하면 마우스로 페인 선택 및 크기 조절 가능
-3. **설정 파일**: `~/.tmux.conf`에서 키 바인딩 및 옵션 커스터마이징
+3. **설정 파일**: `~/.config/tmux/tmux.conf`에서 키 바인딩 및 옵션 커스터마이징
 4. **플러그인**: TPM (Tmux Plugin Manager)으로 다양한 플러그인 사용 가능
 5. **세션 복원**: tmux-resurrect 플러그인으로 재부팅 후에도 세션 복원 가능
 
