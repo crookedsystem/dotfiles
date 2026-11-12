@@ -65,13 +65,13 @@ herdr CLI는 이름이 아니라 **ID로 대상을 지정**한다. ID는 `list` 
 | `tmux selectw -t <session>:<window>` | `herdr tab focus <tab_id>` |
 | `tmux killw -t <session>:<index>` | `herdr tab close <tab_id>` |
 | `tmux kill-server` | `herdr server stop` |
-| `tmux source-file ~/.tmux.conf` | `herdr server reload-config` |
+| `tmux source-file ~/.config/tmux/tmux.conf` | `herdr server reload-config` |
 
 ## 설정 파일
 
 | | tmux | herdr |
 |---|------|-------|
-| 경로 | `~/.tmux.conf` | `~/.config/herdr/config.toml` |
+| 경로 | `~/.config/tmux/tmux.conf` | `~/.config/herdr/config.toml` |
 | 형식 | tmux 명령어 | TOML |
 | 기본값 확인 | `tmux list-keys` | `herdr --default-config` |
 
