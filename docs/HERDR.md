@@ -75,6 +75,39 @@ herdr CLI는 이름이 아니라 **ID로 대상을 지정**한다. ID는 `list` 
 | 형식 | tmux 명령어 | TOML |
 | 기본값 확인 | `tmux list-keys` | `herdr --default-config` |
 
+### 저장소 설정 적용
+
+[config/herdr/config.toml](../config/herdr/config.toml)은 Herdr TUI의 내장 One Dark 테마를 사용하고, 왼쪽 사이드바를 완전히 숨긴 상태로 시작한다. 테마 자동 전환은 꺼져 있어 터미널의 밝은 모드에서도 One Dark를 유지한다. 별도 테마 파일은 필요 없다.
+
+저장소 루트에서 설정 파일만 복사한다. 기존 설정이 있으면 먼저 백업한다.
+
+```bash
+mkdir -p ~/.config/herdr
+if [ -f ~/.config/herdr/config.toml ]; then
+  cp ~/.config/herdr/config.toml ~/.config/herdr/config.toml.bak-$(date +%Y%m%d-%H%M%S)
+fi
+cp config/herdr/config.toml ~/.config/herdr/config.toml
+herdr config check
+```
+
+이 명령은 기존 `config.toml`을 저장소 설정으로 교체한다. 기존 단축키 등도 유지하려면 복사 대신 `[theme]`와 `[ui]`의 해당 항목을 기존 설정에 합친다. 로그나 `sessions/`는 복사하지 않는다.
+
+실행 중인 Herdr에서 `Ctrl+b`를 누른 뒤 `Shift+r`을 누르면 설정을 다시 읽는다. 또는 현재 세션을 지정해 CLI로 다시 읽을 수 있다.
+
+```bash
+herdr server reload-config
+# 이름 있는 세션에서 사용하는 경우
+herdr --session <name> server reload-config
+```
+
+사이드바 기본 닫힘은 다음 클라이언트 실행부터 적용된다. `Ctrl+b` → `q`로 detach한 뒤 `herdr`로 다시 붙는다. 이름 있는 세션은 `herdr --session <name>`으로 다시 붙는다. 서버를 중지할 필요는 없다.
+
+현재 화면에서 바로 사이드바를 열거나 닫으려면 `Ctrl+b` → `b`를 누른다. 위 키는 기본 prefix 기준이다.
+
+공식 문서: [테마와 설정 다시 읽기](https://herdr.dev/tui/docs/configuration/#theme), [사이드바 시작 상태](https://herdr.dev/tui/docs/config-reference/#ui-and-sidebar).
+
+### 단축키 변경
+
 ```toml
 # 단축키는 [keys] 아래에 동작 이름 = 키 형태로 바꾼다
 [keys]

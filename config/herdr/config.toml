@@ -1,0 +1,8 @@
+[theme]
+name = "one-dark"
+auto_switch = false
+
+[ui]
+# 다음 실행부터 왼쪽 사이드바를 완전히 숨긴 상태로 시작한다.
+sidebar_start_collapsed = true
+sidebar_collapsed_mode = "hidden"

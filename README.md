@@ -55,6 +55,15 @@ AeroSpace는 `~/.config/aerospace/aerospace.toml`, tmux는 `~/.config/tmux/tmux.
 
 Ghostty와 workmux도 각 도구의 폴더에 복사됩니다. Coolify는 서버용 템플릿이므로 [별도 적용 절차](./config/coolify/README.md)를 따릅니다.
 
+### Herdr 설정 바로 적용
+
+`config/herdr/config.toml`을 `~/.config/herdr/config.toml`에 복사한 뒤, 실행 중인 Herdr에서 다음 키를 누릅니다. 기본 prefix 기준이며 detach할 필요 없습니다.
+
+1. `Ctrl+b` → `Shift+r`: 설정을 다시 읽어 One Dark 테마를 적용합니다.
+2. 왼쪽 사이드바가 열려 있으면 `Ctrl+b` → `b`로 숨깁니다.
+
+사이드바 기본 닫힘 설정은 다음 실행부터 적용되므로 현재 화면에서는 직접 닫습니다.
+
 ## TMUX 사용법
 
 [열기](./docs/TMUX.md)
