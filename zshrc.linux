@@ -215,6 +215,33 @@ clip() {
         return 1
     fi
 }
+# herdr here: 현재 machine, workspace, pane 정보를 클립보드에 복사한다
+# here가 아닌 인자는 실제 herdr 바이너리로 그대로 넘기고, 함수 안에서는 재귀를 피하려고 command herdr를 쓴다
+# 리눅스에는 pbcopy가 없으므로 위의 clip 함수로 복사한다
+herdr() {
+  if [[ "$1" != "here" ]]; then
+    command herdr "$@"
+    return
+  fi
+
+  if [[ "$HERDR_ENV" != "1" ]]; then
+    echo "Error: 'herdr here' must be run inside a herdr pane (HERDR_ENV is not 1)" >&2
+    return 1
+  fi
+
+  # 중간 명령이 실패하면 일부만 채워진 내용을 복사하지 않도록 pipefail과 && 로 묶는다
+  local pane_context
+  pane_context="$(
+    setopt pipefail
+    printf 'machine: %s (session: %s)\n' "$(hostname -s)" "$HERDR_SESSION" &&
+      command herdr workspace get "$HERDR_WORKSPACE_ID" | jq -r '.result.workspace | "workspace: \(.workspace_id) \(.label)"' &&
+      command herdr pane current --current | jq -r '.result.pane | "pane: \(.pane_id) (tab: \(.tab_id))\ncwd: \(.cwd)"'
+  )" || return 1
+
+  printf '%s\n' "$pane_context" | clip
+  # 무엇이 복사됐는지 터미널에도 보여준다
+  printf '%s\n' "$pane_context"
+}
 
 # terminal에서 option + 방향키 동작 안함
 # 참조 https://edykim.com/ko/post/setting-opt-direction-keys-when-using-zsh-in-iterm/
